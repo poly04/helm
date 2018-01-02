@@ -1,6 +1,10 @@
 ## Helm
 Helm is a free, cross-platform, polyphonic synthesizer that runs on GNU/Linux, Mac, and Windows as a standalone program and as a LV2/VST/AU/AAX plugin. Release is in beta so there are outstanding bugs. Please send any bugs found to matthewtytel@gmail.com
 
+I'm going to add wavetable synthesis to this plugin, because I feel Helm is the free alternative to Massive, and so
+I want this to be the free alternative to Serum. Currently, wavetables have NOT been added, I just forked it to mess around and
+attempt to implement it.
+
 ### Installing:
 Go to [tytel.org/helm](http://tytel.org/helm) for builds.
 
