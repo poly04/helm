@@ -350,6 +350,7 @@
     <ClCompile Include="..\..\..\src\editor_sections\noise_section.cpp"/>
     <ClCompile Include="..\..\..\src\editor_sections\open_gl_modulation_manager.cpp"/>
     <ClCompile Include="..\..\..\src\editor_sections\oscillator_section.cpp"/>
+    <ClCompile Include="..\..\..\src\editor_sections\wavetable_oscillator_section.cpp"/>
     <ClCompile Include="..\..\..\src\editor_sections\patch_browser.cpp"/>
     <ClCompile Include="..\..\..\src\editor_sections\reverb_section.cpp"/>
     <ClCompile Include="..\..\..\src\editor_sections\save_section.cpp"/>

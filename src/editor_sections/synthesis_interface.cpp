@@ -46,6 +46,7 @@ SynthesisInterface::SynthesisInterface(
 
   addSubSection(mixer_section_ = new MixerSection("MIXER"));
   addSubSection(oscillator_section_ = new OscillatorSection("OSCILLATORS"));
+  addSubSection(wavetable_oscillator_section_ = new WavetableOscillatorSection("WAVETABLE OSCILLATORS"));
   addSubSection(poly_lfo_section_ = new LfoSection("POLY LFO", "poly_lfo", false));
   addSubSection(reverb_section_ = new ReverbSection("REVERB"));
   addSubSection(distortion_section_ = new DistortionSection("DISTORTION"));
@@ -83,6 +84,7 @@ SynthesisInterface::~SynthesisInterface() {
   mono_lfo_2_section_ = nullptr;
   mixer_section_ = nullptr;
   oscillator_section_ = nullptr;
+  wavetable_oscillator_section_ = nullptr;
   poly_lfo_section_ = nullptr;
   reverb_section_ = nullptr;
   step_sequencer_section_ = nullptr;
@@ -110,6 +112,7 @@ void SynthesisInterface::paintBackground(Graphics& g) {
   section_shadow.drawForRectangle(g, mono_lfo_2_section_->getBounds());
   section_shadow.drawForRectangle(g, mixer_section_->getBounds());
   section_shadow.drawForRectangle(g, oscillator_section_->getBounds());
+  section_shadow.drawForRectangle(g, wavetable_oscillator_section_->getBounds());
   section_shadow.drawForRectangle(g, poly_lfo_section_->getBounds());
   section_shadow.drawForRectangle(g, reverb_section_->getBounds());
   section_shadow.drawForRectangle(g, step_sequencer_section_->getBounds());
@@ -147,6 +150,8 @@ void SynthesisInterface::resized() {
   int distortion_height = audio_height - delay_height - reverb_height - 2.0f * padding_;
 
   oscillator_section_->setBounds(column_1_x, padding_, section_one_width_, oscillators_height);
+  wavetable_oscillator_section_->setBounds(column_1_x, oscillator_section_->getBottom() + padding_,
+                          section_one_width_, oscillators_height);
   sub_section_->setBounds(column_1_x, oscillator_section_->getBottom() + padding_,
                           sub_width, sub_mixer_height);
   mixer_section_->setBounds(sub_section_->getRight() + padding_, sub_section_->getY(),
@@ -191,7 +196,7 @@ void SynthesisInterface::resized() {
 
   int dynamic_width = size_ratio_ * DYNAMIC_WIDTH;
   int dynamics_y = getHeight() - padding_ - dynamics_height;
-  
+
   voice_section_->setBounds(column_1_x, dynamics_y,
                             dynamic_width, dynamics_height);
   dynamic_section_->setBounds(extra_envelope_section_->getRight() - dynamic_width, dynamics_y,

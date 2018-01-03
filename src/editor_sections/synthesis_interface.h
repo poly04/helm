@@ -32,6 +32,7 @@
 #include "lfo_section.h"
 #include "mixer_section.h"
 #include "oscillator_section.h"
+#include "wavetable_oscillator_section.h"
 #include "reverb_section.h"
 #include "sub_section.h"
 #include "step_sequencer_section.h"
@@ -50,7 +51,7 @@ class SynthesisInterface  : public SynthSection {
     void resized() override;
 
     void setFocus() { grabKeyboardFocus(); }
-  
+
     void setPadding(int padding) { padding_ = padding; }
     void setSectionOneWidth(int width) { section_one_width_ = width; }
     void setSectionTwoWidth(int width) { section_two_width_ = width; }
@@ -71,6 +72,7 @@ class SynthesisInterface  : public SynthSection {
     ScopedPointer<MidiKeyboardComponent> keyboard_;
     ScopedPointer<MixerSection> mixer_section_;
     ScopedPointer<OscillatorSection> oscillator_section_;
+    ScopedPointer<WavetableOscillatorSection> wavetable_oscillator_section_;
     ScopedPointer<LfoSection> poly_lfo_section_;
     ScopedPointer<ReverbSection> reverb_section_;
     ScopedPointer<DistortionSection> distortion_section_;
