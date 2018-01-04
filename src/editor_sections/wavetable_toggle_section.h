@@ -4,6 +4,7 @@
 
 #include "JuceHeader.h"
 #include "synth_section.h"
+#include "synth_button.h"
 #include "wavetable_oscillator_section.h"
 #include "oscillator_section.h"
 
@@ -23,6 +24,7 @@ class WavetableToggleSection : public SynthSection
   private:
     ScopedPointer<OscillatorSection> oscillator_;
     ScopedPointer<WavetableOscillatorSection> wavetable_osc_;
+    ScopedPointer<SynthButton> wavetable_toggle_;
 
     int padding_;
     int section_one_width_;
