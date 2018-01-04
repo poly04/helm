@@ -25,6 +25,7 @@ class WavetableToggleSection : public SynthSection
     ScopedPointer<OscillatorSection> oscillator_;
     ScopedPointer<WavetableOscillatorSection> wavetable_osc_;
     ScopedPointer<SynthButton> wavetable_toggle_;
+    ScopedPointer<ButtonListener> bt_listener_;
 
     int padding_;
     int section_one_width_;
