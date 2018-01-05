@@ -2,12 +2,29 @@
 
 #define TEXT_HEIGHT 20
 
+WavetableToggleSection* instance;
+
+WavetableButtonListener::~WavetableButtonListener()
+{
+
+}
+
+void WavetableButtonListener::guiChanged(SynthButton* button)
+{
+  instance->toggleWavetable();
+}
+
 WavetableToggleSection::WavetableToggleSection(String name) : SynthSection(name)
 {
+  setBufferedToImage(true);
+
   addSubSection(oscillator_ = new OscillatorSection("OSCILLATORS"));
   addSubSection(wavetable_osc_ = new WavetableOscillatorSection("WAVETABLE OSCILLATOR"));
 
   addButton(wavetable_toggle_ = new SynthButton("wavetable_on"));
+  wavetable_toggle_->addButtonListener(bt_listener_ = new WavetableButtonListener());
+
+  instance = this;
 }
 
 WavetableToggleSection::~WavetableToggleSection()
@@ -15,14 +32,24 @@ WavetableToggleSection::~WavetableToggleSection()
   oscillator_ = nullptr;
   wavetable_osc_ = nullptr;
   wavetable_toggle_ = nullptr;
+
+  instance = nullptr;
 }
 
 void WavetableToggleSection::paintBackground(Graphics& g)
 {
   static const DropShadow section_shadow(Colour(0xcc000000), 3, Point<int>(0, 1));
 
-  section_shadow.drawForRectangle(g, oscillator_->getBounds());
-  section_shadow.drawForRectangle(g, wavetable_osc_->getBounds());
+  if(wavetable_toggle_->getToggleState()) {
+    oscillator_->setVisible(false);
+    wavetable_osc_->setVisible(true);
+    section_shadow.drawForRectangle(g, wavetable_osc_->getBounds());
+  } else {
+    oscillator_->setVisible(true);
+    wavetable_osc_->setVisible(false);
+    section_shadow.drawForRectangle(g, oscillator_->getBounds());
+  }
+
   section_shadow.drawForRectangle(g, wavetable_toggle_->getBounds());
 
   paintChildrenBackgrounds(g);
@@ -47,4 +74,18 @@ void WavetableToggleSection::reset()
   wavetable_osc_->reset();
 
   SynthSection::reset();
+}
+
+void WavetableToggleSection::toggleWavetable()
+{
+  toggled = !toggled;
+  if(wavetable_toggle_->getToggleState()) {
+    oscillator_->setVisible(false);
+    wavetable_osc_->setVisible(true);
+  } else {
+    oscillator_->setVisible(true);
+    wavetable_osc_->setVisible(false);
+  }
+
+  repaint();
 }

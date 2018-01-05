@@ -8,6 +8,12 @@
 #include "wavetable_oscillator_section.h"
 #include "oscillator_section.h"
 
+class WavetableButtonListener : public SynthButton::ButtonListener {
+  public:
+    virtual ~WavetableButtonListener();
+    virtual void guiChanged(SynthButton* button);
+};
+
 class WavetableToggleSection : public SynthSection
 {
   public:
@@ -18,6 +24,8 @@ class WavetableToggleSection : public SynthSection
     void resized() override;
     void reset() override;
 
+    void toggleWavetable();
+
     void setPadding(int padding) { padding_ = padding; }
     void setSectionOneWidth(int width) { section_one_width_ = width; }
 
@@ -25,10 +33,12 @@ class WavetableToggleSection : public SynthSection
     ScopedPointer<OscillatorSection> oscillator_;
     ScopedPointer<WavetableOscillatorSection> wavetable_osc_;
     ScopedPointer<SynthButton> wavetable_toggle_;
-    ScopedPointer<ButtonListener> bt_listener_;
+    ScopedPointer<WavetableButtonListener> bt_listener_;
 
     int padding_;
     int section_one_width_;
+
+    bool toggled = false;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(WavetableToggleSection)
 };
