@@ -26,6 +26,7 @@
 #include "circular_queue.h"
 #include "common.h"
 #include "delay.h"
+#include "wavetable_toggler.h"
 #include "distortion.h"
 #include "envelope.h"
 #include "feedback.h"

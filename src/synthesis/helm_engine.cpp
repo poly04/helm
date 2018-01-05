@@ -165,6 +165,13 @@ namespace mopo {
 
     addProcessor(voice_handler_);
 
+    // Wavetable Toggler
+    WavetableToggler* wavetable_toggler = new WavetableToggler();
+    Value* wavetable_on = createBaseControl("wavetable_on");
+
+    wavetable_toggler->plug(wavetable_on, WavetableToggler::kOn);
+    addProcessor(wavetable_toggler);
+
     // Distortion
     Distortion* distortion = new Distortion();
     Value* distortion_on = createBaseControl("distortion_on");
@@ -271,7 +278,7 @@ namespace mopo {
 
     Clamp* clamp_right = new Clamp(-2.1, 2.1);
     clamp_right->plug(scaled_audio_right);
-    
+
     addProcessor(peak_meter_);
     addProcessor(smooth_volume);
     addProcessor(scaled_audio_left);
