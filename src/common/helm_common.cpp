@@ -59,6 +59,8 @@ namespace mopo {
       ValueDetails::kLinear, false, "", "Delay Sync" },
     { "delay_tempo", 0.0, 11.0, 12, 9.0, 0.0, 1.0,
       ValueDetails::kLinear, false, "", "Delay Tempo" },
+    { "wavetable_on", 0.0, 1.0, 2, 0.0, 0.0, 1.0,
+      ValueDetails::kLinear, false, "", "Wavetable Switch" },
     { "distortion_on", 0.0, 1.0, 2, 0.0, 0.0, 1.0,
       ValueDetails::kLinear, false, "", "Distortion Switch" },
     { "distortion_type", 0.0, 3.0, 4, 0.0, 0.0, 1.0,

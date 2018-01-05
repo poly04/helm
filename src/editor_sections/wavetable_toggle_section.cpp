@@ -7,7 +7,7 @@ WavetableToggleSection::WavetableToggleSection(String name) : SynthSection(name)
   addSubSection(oscillator_ = new OscillatorSection("OSCILLATORS"));
   addSubSection(wavetable_osc_ = new WavetableOscillatorSection("WAVETABLE OSCILLATOR"));
   
-  addButton(wavetable_toggle_ = new SynthButton("distortion_on"));
+  addButton(wavetable_toggle_ = new SynthButton("wavetable_on"));
   wavetable_toggle_->addButtonListener(bt_listener_ = new ButtonListener());
 }
 
