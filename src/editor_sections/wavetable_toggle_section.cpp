@@ -18,8 +18,8 @@ WavetableToggleSection::WavetableToggleSection(String name) : SynthSection(name)
 {
   setBufferedToImage(true);
 
-  addSubSection(oscillator_ = new OscillatorSection("OSCILLATORS"));
-  addSubSection(wavetable_osc_ = new WavetableOscillatorSection("WAVETABLE OSCILLATOR"));
+  addSubSection(oscillator_ = new OscillatorSection("OSCILLATOR"));
+  addSubSection(wavetable_osc_ = new WavetableOscillatorSection("OSCILLATORS"));
 
   addButton(wavetable_toggle_ = new SynthButton("wavetable_on"));
   wavetable_toggle_->addButtonListener(bt_listener_ = new WavetableButtonListener());
